@@ -484,8 +484,7 @@ public class FileSystemApplicationHistoryStore extends AbstractService
     try {
       hfWriter.writeHistoryData(new HistoryDataKey(appAttemptStart
         .getApplicationAttemptId().toString(), START_DATA_SUFFIX),
-        ((ApplicationAttemptStartDataPBImpl) appAttemptStart).getProto()
-          .toByteArray());
+        ((ApplicationAttemptStartDataPBImpl) appAttemptStart).getProto().toByteArray());
       LOG.info("Start information of application attempt "
           + appAttemptStart.getApplicationAttemptId() + " is written");
     } catch (IOException e) {

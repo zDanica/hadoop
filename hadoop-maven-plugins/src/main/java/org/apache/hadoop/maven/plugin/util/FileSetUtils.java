@@ -30,8 +30,6 @@ public class FileSetUtils {
    * Returns a string containing every element of the given list, with each
    * element separated by a comma.
    * 
-   * @param list List of all elements
-   * @return String containing every element, comma-separated
    */
   private static String getCommaSeparatedList(List list) {
     StringBuilder buffer = new StringBuilder();
@@ -45,10 +43,6 @@ public class FileSetUtils {
 
   /**
    * Converts a Maven FileSet to a list of File objects.
-   * 
-   * @param source FileSet to convert
-   * @return List<File> containing every element of the FileSet as a File
-   * @throws IOException if an I/O error occurs while trying to find the files
    */
   @SuppressWarnings("unchecked")
   public static List<File> convertFileSetToFiles(FileSet source) throws IOException {

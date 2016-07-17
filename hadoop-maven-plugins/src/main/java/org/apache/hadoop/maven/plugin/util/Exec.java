@@ -41,10 +41,6 @@ public class Exec {
   /**
    * Runs the specified command and saves each line of the command's output to
    * the given list.
-   * 
-   * @param command List<String> containing command and all arguments
-   * @param output List<String> in/out parameter to receive command output
-   * @return int exit code of command
    */
   public int run(List<String> command, List<String> output) {
     int retCode = 1;
@@ -81,8 +77,6 @@ public class Exec {
 
     /**
      * Creates a new OutputBufferThread to consume the given InputStream.
-     * 
-     * @param is InputStream to consume
      */
     public OutputBufferThread(InputStream is) {
       this.setDaemon(true);
@@ -105,8 +99,6 @@ public class Exec {
 
     /**
      * Returns every line consumed from the input.
-     * 
-     * @return List<String> every line consumed from the input
      */
     public List<String> getOutput() {
       return output;
