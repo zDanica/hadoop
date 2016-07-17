@@ -24,6 +24,7 @@ import org.apache.hadoop.classification.InterfaceAudience;
 import org.apache.hadoop.classification.InterfaceStability;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.CommonConfigurationKeys;
+import org.apache.hadoop.ha.proto.ZKFCProtocolProtos;
 import org.apache.hadoop.ha.proto.ZKFCProtocolProtos.ZKFCProtocolService;
 import org.apache.hadoop.ha.protocolPB.ZKFCProtocolPB;
 import org.apache.hadoop.ha.protocolPB.ZKFCProtocolServerSideTranslatorPB;

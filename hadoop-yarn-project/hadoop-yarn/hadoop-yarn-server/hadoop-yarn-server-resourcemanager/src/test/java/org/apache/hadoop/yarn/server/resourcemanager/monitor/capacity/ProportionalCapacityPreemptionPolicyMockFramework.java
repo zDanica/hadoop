@@ -75,8 +75,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class ProportionalCapacityPreemptionPolicyMockFramework {
-  static final Log LOG =
-      LogFactory.getLog(TestProportionalCapacityPreemptionPolicyForNodePartitions.class);
+  static final Log LOG = LogFactory.getLog(ProportionalCapacityPreemptionPolicyMockFramework.class);
   final String ROOT = CapacitySchedulerConfiguration.ROOT;
 
   Map<String, CSQueue> nameToCSQueues = null;

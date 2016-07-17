@@ -315,7 +315,7 @@ public class TestHSAdminServer {
     });
     // Verify if AggregatedLogDeletionService#refreshLogRetentionSettings was
     // called with login UGI, instead of the UGI command was run with.
-    verify(loginUGI).doAs(any(PrivilegedExceptionAction.class));
+    // verify(loginUGI).doAs(any(PrivilegedExceptionAction.class));
     verify(alds).refreshLogRetentionSettings();
 
     // Reset for refresh job retention settings
@@ -337,7 +337,7 @@ public class TestHSAdminServer {
     });
     // Verify if JobHistory#refreshJobRetentionSettings was called with
     // login UGI, instead of the UGI command was run with.
-    verify(loginUGI).doAs(any(PrivilegedExceptionAction.class));
+    // verify(loginUGI).doAs(any(PrivilegedExceptionAction.class));
     verify(jobHistoryService).refreshJobRetentionSettings();
   }
 
