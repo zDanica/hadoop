@@ -327,6 +327,8 @@ public class KerberosAuthenticationHandler implements AuthenticationHandler {
   @Override
   public AuthenticationToken authenticate(HttpServletRequest request, final HttpServletResponse response)
     throws IOException, AuthenticationException {
+	  
+	LOG.error("================================> KerberosAuthenticationHandler");
     AuthenticationToken token = null;
     String authorization = request.getHeader(KerberosAuthenticator.AUTHORIZATION);
 

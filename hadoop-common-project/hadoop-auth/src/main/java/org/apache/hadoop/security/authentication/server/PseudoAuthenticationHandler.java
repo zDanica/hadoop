@@ -17,6 +17,8 @@ import org.apache.hadoop.security.authentication.client.AuthenticationException;
 import org.apache.hadoop.security.authentication.client.PseudoAuthenticator;
 import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.NameValuePair;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -43,6 +45,7 @@ import java.util.Properties;
  */
 public class PseudoAuthenticationHandler implements AuthenticationHandler {
 
+  private static Logger LOG = LoggerFactory.getLogger(PseudoAuthenticationHandler.class);
   /**
    * Constant that identifies the authentication mechanism.
    */
@@ -181,6 +184,8 @@ public class PseudoAuthenticationHandler implements AuthenticationHandler {
   @Override
   public AuthenticationToken authenticate(HttpServletRequest request, HttpServletResponse response)
     throws IOException, AuthenticationException {
+	  
+	LOG.error("================================> KerberosAuthenticationHandler");
     AuthenticationToken token;
     String userName = getUserName(request);
     if (userName == null) {

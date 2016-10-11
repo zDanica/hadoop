@@ -124,6 +124,8 @@ public class TransferFsImage {
   public static void downloadMostRecentImageToDirectory(URL infoServer,
       File dir) throws IOException {
     String fileId = ImageServlet.getParamStringForMostRecentImage();
+    
+    LOG.info("==================> downloadMostRecentImageToDirectory");
     getFileClient(infoServer, fileId, Lists.newArrayList(dir),
         null, false);
   }
@@ -140,7 +142,7 @@ public class TransferFsImage {
     if (dstFiles.isEmpty()) {
       throw new IOException("No targets in destination storage!");
     }
-    
+    LOG.info("==================> downloadImageToStorage");
     MD5Hash hash = getFileClient(fsName, fileid, dstFiles, dstStorage, needDigest);
     LOG.info("Downloaded file " + dstFiles.get(0).getName() + " size " +
         dstFiles.get(0).length() + " bytes.");
@@ -194,6 +196,10 @@ public class TransferFsImage {
         log.getStartTxId(), log.getEndTxId(), milliTime);
     List<File> tmpFiles = dstStorage.getFiles(NameNodeDirType.EDITS,
         tmpFileName);
+    
+    
+    LOG.info("==================> downloadEditsToStorage");
+    
     getFileClient(fsName, fileid, tmpFiles, dstStorage, false);
     LOG.info("Downloaded file " + tmpFiles.get(0).getName() + " size " +
         finalFiles.get(0).length() + " bytes.");
@@ -427,15 +433,19 @@ public class TransferFsImage {
   public static MD5Hash doGetUrl(URL url, List<File> localPaths,
       Storage dstStorage, boolean getChecksum) throws IOException {
     HttpURLConnection connection;
+    
+    LOG.info("do getURL ========>");
     try {
       connection = (HttpURLConnection)
         connectionFactory.openConnection(url, isSpnegoEnabled);
     } catch (AuthenticationException e) {
+      LOG.info("do getURL ===============> " + e.toString());
       throw new IOException(e);
     }
 
     setTimeout(connection);
 
+    LOG.info("do getURL ========>" + connection.getResponseMessage());
     if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
       throw new HttpGetFailedException(
           "Image transfer servlet at " + url +

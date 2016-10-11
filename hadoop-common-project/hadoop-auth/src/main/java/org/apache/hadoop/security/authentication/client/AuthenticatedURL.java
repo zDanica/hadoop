@@ -14,6 +14,7 @@
 package org.apache.hadoop.security.authentication.client;
 
 import org.apache.hadoop.security.authentication.server.AuthenticationFilter;
+import org.mortbay.log.Log;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -204,17 +205,21 @@ public class AuthenticatedURL {
    * @throws AuthenticationException if an authentication exception occurred.
    */
   public HttpURLConnection openConnection(URL url, Token token) throws IOException, AuthenticationException {
-    if (url == null) {
+	 if (url == null) {
       throw new IllegalArgumentException("url cannot be NULL");
     }
+	Log.info("openConnection" + url.toString());
     if (!url.getProtocol().equalsIgnoreCase("http") && !url.getProtocol().equalsIgnoreCase("https")) {
       throw new IllegalArgumentException("url must be for a HTTP or HTTPS resource");
     }
     if (token == null) {
       throw new IllegalArgumentException("token cannot be NULL");
     }
+    Log.info("token " + token.toString());
     authenticator.authenticate(url, token);
+    
     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+    Log.info(conn.getResponseMessage());
     if (connConfigurator != null) {
       conn = connConfigurator.configure(conn);
     }

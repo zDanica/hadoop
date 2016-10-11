@@ -202,8 +202,15 @@ public class URLConnectionFactory {
       throws IOException, AuthenticationException {
     if (isSpnego) {
       LOG.debug("open AuthenticatedURL connection {}", url);
+      LOG.info("===================> start check" + url);
+      
       UserGroupInformation.getCurrentUser().checkTGTAndReloginFromKeytab();
+      
+      LOG.info("===================> check ok");
+      
       final AuthenticatedURL.Token authToken = new AuthenticatedURL.Token();
+      
+      LOG.info("===================>" + connConfigurator.toString());
       return new AuthenticatedURL(new KerberosUgiAuthenticator(),
           connConfigurator).openConnection(url, authToken);
     } else {

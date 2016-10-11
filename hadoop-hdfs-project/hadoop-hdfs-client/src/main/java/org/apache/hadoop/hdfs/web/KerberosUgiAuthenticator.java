@@ -23,6 +23,7 @@ import org.apache.hadoop.security.UserGroupInformation;
 import org.apache.hadoop.security.authentication.client.Authenticator;
 import org.apache.hadoop.security.authentication.client.KerberosAuthenticator;
 import org.apache.hadoop.security.authentication.client.PseudoAuthenticator;
+import org.mortbay.log.Log;
 
 /**
  * Use UserGroupInformation as a fallback authenticator
@@ -35,6 +36,7 @@ public class KerberosUgiAuthenticator extends KerberosAuthenticator {
       @Override
       protected String getUserName() {
         try {
+          Log.info("========================================> user name is " + UserGroupInformation.getLoginUser().getUserName());
           return UserGroupInformation.getLoginUser().getUserName();
         } catch (IOException e) {
           throw new SecurityException("Failed to obtain current username", e);

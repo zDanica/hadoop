@@ -198,6 +198,7 @@ public class KerberosAuthenticator implements Authenticator {
         }
         needFallback = true;
       }
+      LOG.info("==============> response code" + conn.getResponseCode());
       if (!needFallback && isNegotiate()) {
         LOG.debug("Performing our own SPNEGO sequence.");
         doSpnegoSequence(token);
@@ -208,6 +209,15 @@ public class KerberosAuthenticator implements Authenticator {
         // ConnectionConfigurator, since the method might be overridden.
         // Otherwise the fall back authenticator might not have the information
         // to make the connection (e.g., SSL certificates)
+        
+        LOG.error(auth.getClass().getSimpleName());
+        
+        if(auth instanceof PseudoAuthenticator){
+        	LOG.error("PseudoAuthenticator");
+        }else if(auth instanceof KerberosAuthenticator){
+        	LOG.error("KerberosAuthenticator");
+        }
+        
         auth.setConnectionConfigurator(connConfigurator);
         auth.authenticate(url, token);
       }

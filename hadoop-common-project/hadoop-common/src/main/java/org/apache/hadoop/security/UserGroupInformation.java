@@ -1069,11 +1069,15 @@ public class UserGroupInformation {
         || user.getAuthenticationMethod() != AuthenticationMethod.KERBEROS
         || !isKeytab)
       return;
+    
+    LOG.info("**********************************************************************");
     KerberosTicket tgt = getTGT();
+    LOG.info("11111111111111111*******************************" + tgt.getClient().getName());
     if (tgt != null && !shouldRenewImmediatelyForTests &&
         Time.now() < getRefreshTime(tgt)) {
       return;
     }
+    LOG.info("*******************************" + tgt.getClient().getName());
     reloginFromKeytab();
   }
 
