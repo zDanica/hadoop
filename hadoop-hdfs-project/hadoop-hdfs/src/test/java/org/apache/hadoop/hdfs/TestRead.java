@@ -129,7 +129,7 @@ public class TestRead {
       DFSTestUtil.createFile(fs, file, 1024, (short) 1, 0L);
 
       final FSDataInputStream in = fs.open(file);
-      AtomicBoolean readInterrupted = new AtomicBoolean(false);
+      final AtomicBoolean readInterrupted = new AtomicBoolean(false);
       final Thread reader = new Thread(new Runnable() {
         @Override
         public void run() {
